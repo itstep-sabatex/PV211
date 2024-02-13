@@ -2,6 +2,10 @@
 
 
 
+using ThreadDemo;
+
+const int dimension = 1000;
+
 
 
 
@@ -19,31 +23,138 @@ double[,] CreateMatrix(int dimension)
 }
 
 
-static double MultiplreOneElement(int dim, int i, int j, double[,] a, double[,] b)
+void MultiplreOneElement(object? param)
 {
+    if (param == null)
+        throw new ArgumentNullException(nameof(param));
+    MatrixParams matrixParams = (MatrixParams)param;
     double result = 0;
-    //var xDim = a.GetLength(0);
-    //var yDim = a.GetLength(1);
-
-    for (int mi = 0; mi < dim; mi++)
+    for (int mi = 0; mi < matrixParams.dim; mi++)
     {
-        result = result + a[i, mi] * b[mi, j];
+        result = result + matrixParams.a[matrixParams.i, mi] * matrixParams.b[mi, matrixParams.j];
     }
-    return result;
+    matrixParams.c[matrixParams.i,matrixParams.j] = result;
 }
 
 double[,] MultipleMatrix(int dim, double[,] a, double[,] b)
 {
     var result = new double[dim,dim];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < dim; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < dim; j++)
         {
-            result[i, j] = MultiplreOneElement(10, i, j, a, b);
+            MultiplreOneElement(new MatrixParams(dim, i, j, a, b,result));
         }
     }
     return result;
 }
+
+
+double[,] MultipleMatrixThreads(int dim, double[,] a, double[,] b)
+{
+    var threads = new List<Thread>(dim*dim);
+    var result = new double[dim, dim];
+    for (int i = 0; i < dim; i++)
+    {
+        for (int j = 0; j < dim; j++)
+        {
+            var thread = new Thread(MultiplreOneElement);
+            thread.Start(new MatrixParams(dim, i, j, a, b, result));
+            threads.Add(thread);
+        }
+    }
+    while (threads.Any(s => s.IsAlive)) { Thread.Sleep(10); }
+    return result;
+}
+
+void MultiplreOneRow(object? param)
+{
+    if (param == null)
+        throw new ArgumentNullException(nameof(param));
+    MatrixParams matrixParams = (MatrixParams)param;
+    for (int j = 0; j < matrixParams.dim; j++)
+    {
+        MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c));
+    }
+}
+
+
+void MultiplreRows(object? param)
+{
+    if (param == null)
+        throw new ArgumentNullException(nameof(param));
+    MatrixParams matrixParams = (MatrixParams)param;
+    for (int i = matrixParams.i; i < matrixParams.j; i++)
+    {
+
+        for (int j = 0; j < matrixParams.dim; j++)
+        {
+            MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c));
+        }
+    }
+}
+
+
+double[,] MultipleMatrixThreadsRow(int dim, double[,] a, double[,] b)
+{
+    var threads = new List<Thread>();
+    var result = new double[dim, dim];
+    for (int i = 0; i < dim; i++)
+    {
+            var thread = new Thread(MultiplreOneRow);
+            thread.Start(new MatrixParams(dim, i, 0, a, b, result));
+            threads.Add(thread);
+        
+    }
+    while (threads.Any(s => s.IsAlive)) { Thread.Sleep(10); }
+    return result;
+}
+
+
+double[,] MultipleMatrix4Threads(int dim, double[,] a, double[,] b)
+{
+    var threads = new List<Thread>();
+    var result = new double[dim, dim];
+    int last = dimension / 4;
+    for (int i = 0; i < 4; i++)
+    {
+        var ls = last* (i+1);
+        if (i ==3)
+        {
+            ls = ls + dimension % 4;
+        }
+        
+        var thread = new Thread(MultiplreRows);
+        thread.Start(new MatrixParams(dim, i*last, ls, a, b, result));
+        threads.Add(thread);
+
+    }
+    while (threads.Any(s => s.IsAlive)) { Thread.Sleep(10); }
+    return result;
+}
+
+double[,] MultipleMatrix8Threads(int dim, double[,] a, double[,] b)
+{
+    var threads = new List<Thread>();
+    var result = new double[dim, dim];
+    int last = dimension / 8;
+    for (int i = 0; i < 8; i++)
+    {
+        var ls = last * (i + 1);
+        if (i == 7)
+        {
+            ls = ls + dimension % 8;
+        }
+
+        var thread = new Thread(MultiplreRows);
+        thread.Start(new MatrixParams(dim, i * last, ls, a, b, result));
+        threads.Add(thread);
+
+    }
+    while (threads.Any(s => s.IsAlive)) { Thread.Sleep(10); }
+    return result;
+}
+
 
 
 void MethodA(object parameter)
@@ -54,24 +165,43 @@ void MethodA(object parameter)
     Console.WriteLine("End Method A");
 }
 
-var a = CreateMatrix(10);
-var b = CreateMatrix(10);
+var a = CreateMatrix(dimension);
+var b = CreateMatrix(dimension);
+
+var elapsed = System.Diagnostics.Stopwatch.StartNew();
+var c = MultipleMatrix(dimension, a, b);
+elapsed.Stop();
+Console.WriteLine($"Calc Matrix with dimension {dimension} in main Thread - {elapsed.Elapsed}");
+
+elapsed = System.Diagnostics.Stopwatch.StartNew();
+c = MultipleMatrix4Threads(dimension, a, b);
+elapsed.Stop();
+Console.WriteLine($"Calc Matrix with dimension {dimension} in 4 Thread - {elapsed.Elapsed}");
+
+elapsed = System.Diagnostics.Stopwatch.StartNew();
+c = MultipleMatrix8Threads(dimension, a, b);
+elapsed.Stop();
+Console.WriteLine($"Calc Matrix with dimension {dimension} in 8 Thread - {elapsed.Elapsed}");
+
+elapsed = System.Diagnostics.Stopwatch.StartNew();
+c = MultipleMatrixThreadsRow(dimension, a, b);
+elapsed.Stop();
+Console.WriteLine($"Calc Matrix with dimension {dimension} in row  Thread - {elapsed.Elapsed}");
+
+elapsed = System.Diagnostics.Stopwatch.StartNew();
+c = MultipleMatrixThreads(dimension, a, b);
+elapsed.Stop();
+Console.WriteLine($"Calc Matrix with dimension {dimension} in multi Thread - {elapsed.Elapsed}");
 
 
-var c = MultipleMatrix(10, a, b);
 
+//var tr = new Thread(MethodA);
+//tr.Priority = ThreadPriority.BelowNormal;
+//tr.IsBackground = true;
+//tr.Start(10);
+////tr.Suspend();
+////tr.Resume();
 
-
-
-
-var tr = new Thread(MethodA);
-tr.Priority = ThreadPriority.BelowNormal;
-tr.IsBackground = true;
-tr.Start(10);
-//tr.Suspend();
-//tr.Resume();
-
-Thread.Sleep(1000);
-Console.WriteLine("End main thread");
-
+//Thread.Sleep(1000);
+//Console.WriteLine("End main thread");
 
