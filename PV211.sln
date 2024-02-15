@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessDemo", "ProcessDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{88FF7380-5229-43CC-9C1D-C3AAC6F79744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadDemo", "ThreadDemo\ThreadDemo.csproj", "{C4F3CF58-0108-411B-9A0E-21E597981F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadDemo", "ThreadDemo\ThreadDemo.csproj", "{C4F3CF58-0108-411B-9A0E-21E597981F77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfMonitorDemo", "WpfMonitorDemo\WpfMonitorDemo.csproj", "{3303D413-3E58-4888-B152-7F7DE76BE87A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorDemo", "ConsoleApp2\MonitorDemo.csproj", "{C9C73E2D-3818-430D-B17F-E6383962A51C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{C4F3CF58-0108-411B-9A0E-21E597981F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4F3CF58-0108-411B-9A0E-21E597981F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4F3CF58-0108-411B-9A0E-21E597981F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3303D413-3E58-4888-B152-7F7DE76BE87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3303D413-3E58-4888-B152-7F7DE76BE87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3303D413-3E58-4888-B152-7F7DE76BE87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3303D413-3E58-4888-B152-7F7DE76BE87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
