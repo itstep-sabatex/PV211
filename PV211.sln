@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadDemo", "ThreadDemo\Th
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfMonitorDemo", "WpfMonitorDemo\WpfMonitorDemo.csproj", "{3303D413-3E58-4888-B152-7F7DE76BE87A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorDemo", "ConsoleApp2\MonitorDemo.csproj", "{C9C73E2D-3818-430D-B17F-E6383962A51C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorDemo", "ConsoleApp2\MonitorDemo.csproj", "{C9C73E2D-3818-430D-B17F-E6383962A51C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixLib", "MatrixLib\MatrixLib.csproj", "{7B5B2F79-85C2-4108-8CF3-050B8A59729A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C73E2D-3818-430D-B17F-E6383962A51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5B2F79-85C2-4108-8CF3-050B8A59729A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5B2F79-85C2-4108-8CF3-050B8A59729A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5B2F79-85C2-4108-8CF3-050B8A59729A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5B2F79-85C2-4108-8CF3-050B8A59729A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

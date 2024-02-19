@@ -19,9 +19,29 @@ namespace WpfMonitorDemo
     {
         DispatcherTimer a;
         Timer b;
+        Thread matrinOneThread;
+
         public MainWindow()
         {
             InitializeComponent();
+            matrinOneThread = new Thread(() => {
+                var m = new MatrixLib.Matrix();
+                var a = m.CreateMatrix(1000);
+                var b = m.CreateMatrix(1000);
+
+                var c = m.MultipleMatrix(1000, a, b, (n) =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        prBar.Value = n / 10 + 1;
+                    });
+
+
+                });
+
+
+            });
+            matrinOneThread.IsBackground = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +52,7 @@ namespace WpfMonitorDemo
             a.Start();
 
 
-            b = new Timer(TimerElapsed,null, 2000, 1000);
+            //b = new Timer(TimerElapsed,null, 2000, 1000);
 
 
         }
@@ -50,7 +70,13 @@ namespace WpfMonitorDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(5000);
+             matrinOneThread.Start();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            matrinOneThread?.Abort();
+
         }
     }
 }
