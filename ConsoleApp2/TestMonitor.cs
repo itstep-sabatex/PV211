@@ -34,7 +34,18 @@ namespace MonitorDemo
 
         void IncrementCounterMonitor()
         {
-            Monitor.Enter(lockObject); Monitor.TryEnter(lockObject,1000);
+            //Monitor.Enter(lockObject); Monitor.TryEnter(lockObject,1000);
+            Mutex.OpenExisting("myMutex");
+            if (Mutex.TryOpenExisting("myMutex",out Mutex? resul))
+            {
+                resul.WaitOne();
+                ///
+
+                resul.Close();
+
+            }
+
+
             Counter++;
             Monitor.Exit(lockObject);
         }

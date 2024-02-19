@@ -93,7 +93,7 @@ void MultiplreRows(object? param)
 
         for (int j = 0; j < matrixParams.dim; j++)
         {
-            MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c));
+                MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c), new Action(() =>));
         }
     }
 }
