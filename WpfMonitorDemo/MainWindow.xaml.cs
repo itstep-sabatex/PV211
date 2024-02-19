@@ -20,27 +20,40 @@ namespace WpfMonitorDemo
         DispatcherTimer a;
         Timer b;
         Thread matrinOneThread;
+        CancellationTokenSource cts;
 
-        public MainWindow()
+
+
+        void CalcMatrix(object? obj)
         {
-            InitializeComponent();
-            matrinOneThread = new Thread(() => {
-                var m = new MatrixLib.Matrix();
-                var a = m.CreateMatrix(1000);
-                var b = m.CreateMatrix(1000);
+            var cts = (CancellationToken)obj;
+            var m = new MatrixLib.Matrix();
+            var a = m.CreateMatrix(1000);
+            var b = m.CreateMatrix(1000);
 
-                var c = m.MultipleMatrix(1000, a, b, (n) =>
+            var c = m.MultipleMatrix(1000, a, b, (n) =>
+            {
+                if (cts.IsCancellationRequested)
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        prBar.Value = n / 10 + 1;
-                    });
-
-
+                    return;
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    prBar.Value = n / 10 + 1;
                 });
 
 
             });
+        }
+
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            cts = new CancellationTokenSource();
+
+            matrinOneThread = new Thread(new ParameterizedThreadStart(CalcMatrix));
+  
             matrinOneThread.IsBackground = true;
         }
 
@@ -70,12 +83,15 @@ namespace WpfMonitorDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-             matrinOneThread.Start();
+             matrinOneThread.Start(cts.Token);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            matrinOneThread?.Abort();
+            cts.Cancel();
+            // Call Dispose when we're done with the CancellationTokenSource.
+            cts.Dispose();
+
 
         }
     }
