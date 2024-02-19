@@ -9,7 +9,9 @@ namespace MonitorDemo
     internal class TestMonitor
     {
 
-        public int Counter { get; set; } //32 - 64
+       volatile public  int Counter; //32 - 64
+
+        private object lockObject = new object();
 
         public string Name { get; set; }//32 - 64
         int Increment(int value,string s)
@@ -22,13 +24,32 @@ namespace MonitorDemo
 
         void IncrementCounter()
         {
-             Counter++;
+            lock (lockObject) 
+            {
+                Counter++;
+
+            }
         }
 
 
-        void IncrementInTwoThread(int count)
+        void IncrementCounterMonitor()
         {
-            tr1 = new Thread(() => {for (int i=0;i<count/2;i++) Inc })
+            Monitor.Enter(lockObject); Monitor.TryEnter(lockObject,1000);
+            Counter++;
+            Monitor.Exit(lockObject);
+        }
+
+
+        public void IncrementInTwoThread(int count)
+        {
+            var trs = new List<Thread>();
+            for (int i = 0; i < 8; i++)
+            {
+                var tr = new Thread(() => { for (int i = 0; i < count; i++) IncrementCounter(); });
+                tr.Start();
+                trs.Add(tr);
+            }
+             while (trs.Any(s=>s.IsAlive)) { Thread.Sleep(100); }
         }
 
     }
