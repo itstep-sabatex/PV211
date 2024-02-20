@@ -20,6 +20,7 @@ namespace WpfMonitorDemo
         DispatcherTimer a;
         Timer b;
         Thread matrinOneThread;
+        Thread matrinOneThread4;
         CancellationTokenSource cts;
 
 
@@ -45,6 +46,28 @@ namespace WpfMonitorDemo
 
             });
         }
+        void CalcMatrix4(object? obj)
+        {
+            var cts = (CancellationToken)obj;
+            var m = new MatrixLib.Matrix();
+            var a = m.CreateMatrix(1000);
+            var b = m.CreateMatrix(1000);
+            int i = 0;
+            var c = m.MultipleMatrix4Threads(1000, a, b, () =>
+            {
+                if (cts.IsCancellationRequested)
+                {
+                    return;
+                }
+                i++;
+                Dispatcher.Invoke(() =>
+                {
+                    prBar4.Value = i / 10 + 1;
+                });
+
+
+            });
+        }
 
 
         public MainWindow()
@@ -55,6 +78,10 @@ namespace WpfMonitorDemo
             matrinOneThread = new Thread(new ParameterizedThreadStart(CalcMatrix));
   
             matrinOneThread.IsBackground = true;
+            matrinOneThread4 = new Thread(new ParameterizedThreadStart(CalcMatrix4));
+
+            matrinOneThread4.IsBackground = true;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -84,6 +111,7 @@ namespace WpfMonitorDemo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
              matrinOneThread.Start(cts.Token);
+             matrinOneThread4.Start(cts.Token);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

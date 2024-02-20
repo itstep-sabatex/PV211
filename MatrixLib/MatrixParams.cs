@@ -14,8 +14,8 @@ namespace ThreadDemo
         public readonly double[,] a;
         public readonly double[,] b;
         public readonly double[,] c;
-        Action rowCalc;
-        public MatrixParams(int dim, int i, int j, double[,] a, double[,] b, double[,] c, Action rowCalc)
+        public readonly Action? rowCalc;
+        public MatrixParams(int dim, int i, int j, double[,] a, double[,] b, double[,] c, Action? rowCalc)
         {
             this.a = a;
             this.dim = dim;

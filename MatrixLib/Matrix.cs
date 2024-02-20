@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 namespace MatrixLib;
+
+using System.Reflection.Metadata.Ecma335;
 using ThreadDemo;
 public class Matrix 
 { 
@@ -47,7 +49,7 @@ public double[,] MultipleMatrix(int dim, double[,] a, double[,] b,Action<int> pr
         progress?.Invoke(i);
         for (int j = 0; j < dim; j++)
         {
-            MultiplreOneElement(new MatrixParams(dim, i, j, a, b,result));
+            MultiplreOneElement(new MatrixParams(dim, i, j, a, b,result,null));
         }
     }
     return result;
@@ -63,7 +65,7 @@ double[,] MultipleMatrixThreads(int dim, double[,] a, double[,] b)
         for (int j = 0; j < dim; j++)
         {
             var thread = new Thread(MultiplreOneElement);
-            thread.Start(new MatrixParams(dim, i, j, a, b, result));
+            thread.Start(new MatrixParams(dim, i, j, a, b, result, null));
             threads.Add(thread);
         }
     }
@@ -78,7 +80,7 @@ void MultiplreOneRow(object? param)
     MatrixParams matrixParams = (MatrixParams)param;
     for (int j = 0; j < matrixParams.dim; j++)
     {
-        MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c));
+        MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c,null));
     }
 }
 
@@ -90,10 +92,11 @@ void MultiplreRows(object? param)
     MatrixParams matrixParams = (MatrixParams)param;
     for (int i = matrixParams.i; i < matrixParams.j; i++)
     {
+            matrixParams.rowCalc?.Invoke();
 
         for (int j = 0; j < matrixParams.dim; j++)
         {
-                MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c), new Action(() =>));
+                MultiplreOneElement(new MatrixParams(matrixParams.dim, matrixParams.i, j, matrixParams.a, matrixParams.b, matrixParams.c,null));
         }
     }
 }
@@ -106,7 +109,7 @@ double[,] MultipleMatrixThreadsRow(int dim, double[,] a, double[,] b)
     for (int i = 0; i < dim; i++)
     {
             var thread = new Thread(MultiplreOneRow);
-            thread.Start(new MatrixParams(dim, i, 0, a, b, result));
+            thread.Start(new MatrixParams(dim, i, 0, a, b, result, null));
             threads.Add(thread);
         
     }
@@ -114,9 +117,10 @@ double[,] MultipleMatrixThreadsRow(int dim, double[,] a, double[,] b)
     return result;
 }
 
-
-double[,] MultipleMatrix4Threads(int dim, double[,] a, double[,] b)
+    object mt4 = new object();
+public double[,] MultipleMatrix4Threads(int dim, double[,] a, double[,] b,Action rowCalc)
 {
+
     var threads = new List<Thread>();
     var result = new double[dim, dim];
     int last = dimension / 4;
@@ -129,7 +133,13 @@ double[,] MultipleMatrix4Threads(int dim, double[,] a, double[,] b)
         }
         
         var thread = new Thread(MultiplreRows);
-        thread.Start(new MatrixParams(dim, i*last, ls, a, b, result));
+        thread.Start(new MatrixParams(dim, i*last, ls, a, b, result, () =>
+        {
+            lock (mt4)
+            {
+                rowCalc?.Invoke();
+            }
+        }));
         threads.Add(thread);
 
     }
@@ -151,7 +161,7 @@ double[,] MultipleMatrix8Threads(int dim, double[,] a, double[,] b)
         }
 
         var thread = new Thread(MultiplreRows);
-        thread.Start(new MatrixParams(dim, i * last, ls, a, b, result));
+        thread.Start(new MatrixParams(dim, i * last, ls, a, b, result, null));
         threads.Add(thread);
 
     }

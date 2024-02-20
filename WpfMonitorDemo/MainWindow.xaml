@@ -16,7 +16,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Button Click="Button_Click">Click</Button>
-        <Label x:Name="label1" Grid.Column="1">Text</Label>
-        <ProgressBar x:Name="prBar" Grid.Row="1" Value="0"/>
+        <Label x:Name="label1" Grid.Row="1" >Text</Label>
+        <ProgressBar x:Name="prBar" Grid.Row="0" Grid.Column="1" Value="0"  />
+        <ProgressBar x:Name="prBar4" Grid.Row="1" Grid.Column="1" Value="0"/>
     </Grid>
 </Window>
