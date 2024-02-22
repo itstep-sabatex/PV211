@@ -17,6 +17,7 @@ var r = await CalcAsync(2.5, 3);
 var t =Task.Run(() => { });
 var t2 =Task<int>.Run(() => { t.Wait(); return 1; });
 
+var c =Console.OpenStandardOutput();
 
 
 var a = Calc(3, 4);

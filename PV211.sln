@@ -19,11 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorDemo", "ConsoleApp2\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixLib", "MatrixLib\MatrixLib.csproj", "{7B5B2F79-85C2-4108-8CF3-050B8A59729A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutexDemo", "MutexDemo\MutexDemo.csproj", "{71B9C436-F76D-4F95-9137-60E33D11E178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MutexDemo", "MutexDemo\MutexDemo.csproj", "{71B9C436-F76D-4F95-9137-60E33D11E178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemaphoreDemo", "SemaphoreDemo\SemaphoreDemo.csproj", "{A059BE0D-6AED-4DF5-9069-2C975D7DE3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemaphoreDemo", "SemaphoreDemo\SemaphoreDemo.csproj", "{A059BE0D-6AED-4DF5-9069-2C975D7DE3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskDemo", "TaskDemo\TaskDemo.csproj", "{370894B4-32D6-4059-B6DE-1D26435B7F25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskDemo", "TaskDemo\TaskDemo.csproj", "{370894B4-32D6-4059-B6DE-1D26435B7F25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTask", "MatrixTask\MatrixTask.csproj", "{17F74448-0D02-4A48-8A1E-3D937469CF72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTaskDemo", "MatrixTaskDemo\MatrixTaskDemo.csproj", "{B2970755-F994-461A-B6D8-7C976E73E77F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{370894B4-32D6-4059-B6DE-1D26435B7F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370894B4-32D6-4059-B6DE-1D26435B7F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370894B4-32D6-4059-B6DE-1D26435B7F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F74448-0D02-4A48-8A1E-3D937469CF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F74448-0D02-4A48-8A1E-3D937469CF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F74448-0D02-4A48-8A1E-3D937469CF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F74448-0D02-4A48-8A1E-3D937469CF72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2970755-F994-461A-B6D8-7C976E73E77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2970755-F994-461A-B6D8-7C976E73E77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2970755-F994-461A-B6D8-7C976E73E77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2970755-F994-461A-B6D8-7C976E73E77F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
