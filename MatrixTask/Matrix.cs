@@ -137,27 +137,36 @@ public static double[,] MultipleMatrix4Threads(int dim, double[,] a, double[,] b
     return result;
 }
 
-//double[,] MultipleMatrix8Threads(int dim, double[,] a, double[,] b)
-//{
-//    var threads = new List<Thread>();
-//    var result = new double[dim, dim];
-//    int last = dimension / 8;
-//    for (int i = 0; i < 8; i++)
-//    {
-//        var ls = last * (i + 1);
-//        if (i == 7)
-//        {
-//            ls = ls + dimension % 8;
-//        }
+public static double[,] MultipleMatrix8Threads(int dim, double[,] a, double[,] b)
+{
+        var tasks = new Task[8];
+        var result = new double[dim, dim];
+        int last = dim / 8;
+        for (int i = 0; i < 8; i++)
+        {
+            var ls = last * (i + 1);
+            if (i == 7)
+            {
+                ls = ls + dim % 8;
+            }
+            var start = i * last;
 
-//        var thread = new Thread(MultiplreRows);
-//        thread.Start(new MatrixParams(dim, i * last, ls, a, b, result, null));
-//        threads.Add(thread);
+            tasks[i] = Task.Run(() => {
+                for (int i = start; i < ls; i++)
+                {
+                    for (int j = 0; j < dim; j++)
+                    {
+                        result[i, j] = MultiplreOneElement(dim, i, j, a, b);
+                    }
+                }
+            });
 
-//    }
-//    while (threads.Any(s => s.IsAlive)) { Thread.Sleep(10); }
-//    return result;
-//}
+
+
+        }
+        foreach (var task in tasks) task.Wait();
+        return result;
+     }
 
 
 
