@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetProg", "NetProg", "{56BA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketDemo", "SocketDemo\SocketDemo.csproj", "{A6AAF213-3218-458E-B879-77581EF31A82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketListner", "SocketListner\SocketListner.csproj", "{28898BA0-C507-4A88-9DCE-BF4BA949063B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,12 +97,17 @@ Global
 		{A6AAF213-3218-458E-B879-77581EF31A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6AAF213-3218-458E-B879-77581EF31A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6AAF213-3218-458E-B879-77581EF31A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28898BA0-C507-4A88-9DCE-BF4BA949063B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28898BA0-C507-4A88-9DCE-BF4BA949063B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28898BA0-C507-4A88-9DCE-BF4BA949063B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28898BA0-C507-4A88-9DCE-BF4BA949063B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A6AAF213-3218-458E-B879-77581EF31A82} = {56BA3012-B7D3-45EA-B221-D9410C5F9901}
+		{28898BA0-C507-4A88-9DCE-BF4BA949063B} = {56BA3012-B7D3-45EA-B221-D9410C5F9901}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C10DAF1B-C740-41F5-89F0-DAD6F4398329}
