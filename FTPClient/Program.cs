@@ -20,3 +20,19 @@ catch (Exception e)
 {
 
 }
+
+request = (FtpWebRequest)WebRequest.Create("ftp://ftp.gnu.org/welcome.msg");
+request.Credentials = new NetworkCredential("anonymous", "");
+request.Method = WebRequestMethods.Ftp.DownloadFile;
+try
+{
+    var data = new byte[80000];
+    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+    Int32 bytes = response.GetResponseStream().Read(data, 0, data.Length);
+    Console.WriteLine(Encoding.ASCII.GetString(data, 0, bytes));
+
+}
+catch (Exception e)
+{
+
+}
