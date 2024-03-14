@@ -5,10 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ProcessDemo\ProcessDemo.csproj" />
-  </ItemGroup>
+  </PropertyGroup>
 
 </Project>
