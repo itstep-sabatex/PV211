@@ -4,9 +4,12 @@ using Microsoft.VisualBasic.FileIO;
 using System.Linq.Expressions;
 using System.Net.Http.Json;
 
+
+
 Console.WriteLine("Hello, World!");
 
 HttpClient client = new HttpClient();  //WebClient
+client.BaseAddress = new Uri("https://sabatex.francecentral.cloudapp.azure.com/api/v0");
 
 
 
@@ -37,6 +40,7 @@ HttpClient client = new HttpClient();  //WebClient
 
 
 // class Stude
+var a = new {Id=new Guid(),Password="password"};
 
 var student = new Student { Id = 1,Name="Jonn",Description="Student AO",FirstName="Jonn",LastName="Faro" };
 student.FirstName = "Hary";
@@ -44,7 +48,20 @@ student.FirstName = "Hary";
 //var responce = await client.PostAsJsonAsync("https://www.google.com", student);
 //var responce = await client.GetStringAsync("https://www.google.com");//  GetAsync("https://www.google.com");
 var responce = await client.GetAsync("https://www.google.com");
+
+System.Text.Json.JsonSerializer.Serialize(new { Id = new Guid(), Password = "password" });
+var r  = await client.PostAsJsonAsync("login", new { Id = new Guid(), Password = "password" });
 if (responce.IsSuccessStatusCode)
 {
     var s = await responce.Content.ReadAsStringAsync();
+    int start = 0;
+    int count = 0;
+    while(-1 != (start = s.IndexOf("<div", start)))
+    {
+        count++;
+        start++;
+
+    }
 }
+
+// <div> </div>
