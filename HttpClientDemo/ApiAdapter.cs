@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sabatex.ObjectsExchange.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
@@ -34,10 +35,20 @@ namespace HttpClientDemo
 
         public async Task SendMessage(Guid destination, string message)
         {
+            client.DefaultRequestHeaders.Remove("destinationId");
             client.DefaultRequestHeaders.Add("destinationId", $"{destination}");
             var response = await client.PostAsJsonAsync("/api/v0/queries", new { objectType = "", objectId = message });
             if (!response.IsSuccessStatusCode)
                 throw new Exception($"Error send message {response.StatusCode}");
         }
+
+        public async Task<QueryObject[]> GetMessages(Guid sender, int? take=null)
+        {
+            client.DefaultRequestHeaders.Remove("destinationId");
+            client.DefaultRequestHeaders.Add("destinationId", $"{sender}");
+            string takeStr = take == null ? "" : $"?take={take}";
+            return await client.GetFromJsonAsync<QueryObject[]>($"/api/v0/queries{takeStr}");
+        }
+
     }
 }
