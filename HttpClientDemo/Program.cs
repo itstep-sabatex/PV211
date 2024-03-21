@@ -8,11 +8,13 @@ using System.Net.Http.Json;
 
 Console.WriteLine("Hello, World!");
 
+var adapter = new ApiAdapter();
+var token = await adapter.Login("1eea3e56-e9d7-4c72-a5a0-c12006a84949", "Aa1234567890-=");
+
+
+
 HttpClient client = new HttpClient();  //WebClient
-client.BaseAddress = new Uri("https://sabatex.francecentral.cloudapp.azure.com/api/v0");
-
-
-
+client.BaseAddress = new Uri("https://sabatex.francecentral.cloudapp.azure.com");   
 
 
 // request   - запит до сервера
@@ -40,10 +42,8 @@ client.BaseAddress = new Uri("https://sabatex.francecentral.cloudapp.azure.com/a
 
 
 // class Stude
-var a = new {Id=new Guid(),Password="password"};
+//var a = new {Id=new Guid(),Password="password"};
 
-var student = new Student { Id = 1,Name="Jonn",Description="Student AO",FirstName="Jonn",LastName="Faro" };
-student.FirstName = "Hary";
 //client.DefaultRequestHeaders.Add("MyHeader", "XXRT");
 //var responce = await client.PostAsJsonAsync("https://www.google.com", student);
 //var responce = await client.GetStringAsync("https://www.google.com");//  GetAsync("https://www.google.com");
