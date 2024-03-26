@@ -11,11 +11,25 @@ Console.WriteLine("Hello, World!");
 var adapter = new ApiAdapter();
 await adapter.Login("1eea3e56-e9d7-4c72-a5a0-c12006a84949", "Aa1234567890-=");
 await adapter.SendMessage(new Guid("a6d4954b-c385-43dc-a6e6-60d60cd5096f"), "Hello");
-var messages = await adapter.GetMessages();
+//var messages = await adapter.GetMessages();
 
 
 
-HttpClient client = new HttpClient();  //WebClient
+HttpClient client = new HttpClient();
+client.BaseAddress = new Uri("https://api.privatbank.ua/p24api/");
+int year = 2024;
+int mounth = 1;
+DateTime date = new DateTime(year,mounth,1);
+while (date.Month == mounth)
+{
+    
+    var response = await client.GetAsync($"exchange_rates?date= {date.ToString("dd.MM.yyyy")}");
+    var rate = await response.Content.ReadFromJsonAsync<ExchangeDescriptor>();
+    date = date.AddDays(1);
+    Thread.Sleep(1000);
+    Console.WriteLine(date);
+}
+//WebClient
 client.BaseAddress = new Uri("https://sabatex.francecentral.cloudapp.azure.com");
 await client.DeleteAsync("api/v0/queries/12312");
 

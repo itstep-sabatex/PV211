@@ -1,4 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+
+// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
 Semaphore mutex = new Semaphore(2,2,"9F633EE0-BD71-4F4C-A9DB-FFD865FC2D64", out bool isNew);
