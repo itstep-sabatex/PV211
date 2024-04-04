@@ -3,6 +3,7 @@
 namespace MatrixLib;
 
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 using ThreadDemo;
 public class Matrix 
 { 
@@ -40,8 +41,17 @@ void MultiplreOneElement(object? param)
     }
     matrixParams.c[matrixParams.i,matrixParams.j] = result;
 }
+    public double MultiplreOneElement(int dim, int i, int j, double[,] a, double[,] b)
+    {
+        double result = 0;
+        for (int mi = 0; mi < dim; mi++)
+        {
+            result = result + a[i, mi] * b[mi, j];
+        }
+        return result;
+    }
 
-public double[,] MultipleMatrix(int dim, double[,] a, double[,] b,Action<int> progress)
+    public double[,] MultipleMatrix(int dim, double[,] a, double[,] b,Action<int> progress)
 {
     var result = new double[dim,dim];
     for (int i = 0; i < dim; i++)
@@ -73,7 +83,38 @@ double[,] MultipleMatrixThreads(int dim, double[,] a, double[,] b)
     return result;
 }
 
-void MultiplreOneRow(object? param)
+    public double[,] MultipleMatrixTasks(int dim, double[,] a, double[,] b,Action<int> progress)
+    {
+        object locker = new object();
+        int counter = 0;
+        int prCounter = 0;
+        int totel = dim * dim;
+        var result = new double[dim, dim];
+        Parallel.ForAsync(0, totel, async (i,token) => 
+        {
+            var mi = i / dim;
+            var mj = i % dim;
+            result[mi, mj] = MultiplreOneElement(dim, mi, mj, a, b);
+            lock (locker) 
+            {
+                counter++;
+                var r = counter * 100 / totel;
+                if (r > prCounter)
+                {
+                    prCounter = r;
+                    Task.Run(()=> progress?.Invoke(prCounter));
+                }
+            }
+            await Task.Yield();
+        }).Wait();
+
+        return result;
+
+ 
+    }
+
+
+    void MultiplreOneRow(object? param)
 {
     if (param == null)
         throw new ArgumentNullException(nameof(param));

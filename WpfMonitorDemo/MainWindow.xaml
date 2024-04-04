@@ -7,17 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
+         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Button Click="Button_Click">Click</Button>
-        <Label x:Name="label1" Grid.Row="1" >Text</Label>
-        <ProgressBar x:Name="prBar" Grid.Row="0" Grid.Column="1" Value="0"  />
-        <ProgressBar x:Name="prBar4" Grid.Row="1" Grid.Column="1" Value="0"/>
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="Button_Click">Click</Button>    
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Label x:Name="label1" Grid.Row="1" >One thread</Label>
+            <ProgressBar x:Name="prBar" Grid.Row="0" Grid.Column="1" Value="0" Height="20" />
+            <Label  Grid.Row="1" >Four thread</Label>
+            <ProgressBar x:Name="prBar4" Grid.Row="1" Grid.Column="1" Value="0" Height="20" />
+            <Label  Grid.Row="1" >Multy Tasks</Label>
+            <ProgressBar x:Name="prBarMulty" Grid.Row="1" Grid.Column="1" Value="0" Height="20" />
+
+        </StackPanel>
+   </Grid>
 </Window>

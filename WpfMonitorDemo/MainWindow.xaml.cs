@@ -23,6 +23,7 @@ namespace WpfMonitorDemo
         Thread matrinOneThread4;
         CancellationTokenSource cts;
 
+        MatrixLib.Matrix matrixMultiTask = new MatrixLib.Matrix();
 
 
         void CalcMatrix(object? obj)
@@ -82,6 +83,8 @@ namespace WpfMonitorDemo
 
             matrinOneThread4.IsBackground = true;
 
+            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -110,6 +113,13 @@ namespace WpfMonitorDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Task.Run(()=> matrixMultiTask.MultipleMatrixTasks(1000, matrixMultiTask.CreateMatrix(1000), matrixMultiTask.CreateMatrix(1000), i => {
+                Dispatcher.Invoke(() =>
+                {
+                    prBarMulty.Value = i;
+                });
+            }));
+
              matrinOneThread.Start(cts.Token);
              matrinOneThread4.Start(cts.Token);
         }
