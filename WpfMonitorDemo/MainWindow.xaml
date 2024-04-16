@@ -12,7 +12,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Click="Button_Click">Click</Button>    
+            <Button Click="Button_Click">Click</Button>
+            <DatePickerTextBox />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Label x:Name="label1" Grid.Row="1" >One thread</Label>
