@@ -63,6 +63,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CafeWPF", "CafeWPF\CafeWPF.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreDemo", "EFCoreDemo\EFCoreDemo.csproj", "{55647329-ACB6-4787-877E-377A688602A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafeDemoWPF", "CafeDemoWPF\CafeDemoWPF.csproj", "{24543FF2-E2ED-45F4-B8BE-7B1323EF84A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,10 @@ Global
 		{55647329-ACB6-4787-877E-377A688602A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55647329-ACB6-4787-877E-377A688602A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55647329-ACB6-4787-877E-377A688602A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24543FF2-E2ED-45F4-B8BE-7B1323EF84A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24543FF2-E2ED-45F4-B8BE-7B1323EF84A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24543FF2-E2ED-45F4-B8BE-7B1323EF84A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24543FF2-E2ED-45F4-B8BE-7B1323EF84A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

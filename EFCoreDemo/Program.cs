@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Cafe.Models;
 using EFCoreDemo.Data;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, World!");
 
@@ -16,5 +17,7 @@ using (var context = new CafeDbContext())
     var role = new Role { Name = "EF Core user 2" };
     context.Role.Add(role);
     context.SaveChanges();
+    context.Database.GetDbConnection();
+
 }
 Console.ReadLine();
