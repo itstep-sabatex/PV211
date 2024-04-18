@@ -18,6 +18,11 @@ using (var context = new CafeDbContext())
     context.Role.Add(role);
     context.SaveChanges();
     context.Database.GetDbConnection();
+    var user = context.Waiters.Single(s => s.Id == 1);
+    role = context.Role.Single(s=>s.Id == 1);
+    var userRole = new UserRole { RoleId = role.Id, WaiterId = user.Id };
+    context.Add(userRole);
+    context.SaveChanges();
 
-}
+ }
 Console.ReadLine();
