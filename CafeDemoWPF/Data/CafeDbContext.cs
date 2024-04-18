@@ -10,7 +10,7 @@ namespace EFCoreDemo.Data
 {
     public class CafeDbContext :DbContext
     {
-        public DbSet<Role> Role { get; set; }
+        //public DbSet<Role> Role { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

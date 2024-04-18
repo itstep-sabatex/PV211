@@ -1,9 +1,10 @@
 ﻿namespace Cafe.Models
 {
-    public class Role
+    public enum Role
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = default!;
-
+        admin = 1,
+        waiter =2,
+        Manager =4,
+        bar=3
     }
 }

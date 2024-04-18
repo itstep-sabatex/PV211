@@ -27,7 +27,7 @@ using (var connection = new Microsoft.Data.Sqlite.SqliteConnection(config.GetCon
     var roles = await connection.QueryAsync<Role>("select * from role where id > @level",new {level=4});
     foreach (var role in roles)
     {
-        Console.WriteLine($"id:{role.Id}  name:{role.Name}");
+       // Console.WriteLine($"id:{role.Id}  name:{role.Name}");
     }
 
 

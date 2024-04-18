@@ -10,7 +10,7 @@ namespace EFCoreDemo.Data
 {
     public class CafeDbContext :DbContext
     {
-        public DbSet<Role> Role { get; set; }
+        //public DbSet<Role> Role { get; set; }
         public DbSet<Waiter> Waiters { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 

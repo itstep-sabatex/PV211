@@ -26,7 +26,7 @@ namespace CafeDemoWPF
         {
             using (var context = new CafeDbContext())
             {
-                dg.ItemsSource = context.Role.ToArray();
+                //dg.ItemsSource = context.Role.ToArray();
             }
         }
     }
