@@ -17,8 +17,8 @@ namespace EFCoreDemo.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("FileName=C:/Users/serhi/.databases/itstep/cafe2.db");
-            //optionsBuilder.UseSqlServer("FileName=C:/Users/serhi/.databases/itstep/cafe2.db");
+            //optionsBuilder.UseSqlite("FileName=C:/Users/serhi/.databases/itstep/cafe2.db");
+            optionsBuilder.UseSqlServer("FileName=C:/Users/serhi/.databases/itstep/cafe2.db");
 
         }
     }
