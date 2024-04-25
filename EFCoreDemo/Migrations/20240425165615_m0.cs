@@ -17,9 +17,12 @@ namespace EFCoreDemo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    IdCode = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false),
+                    State = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Password = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Counter = table.Column<double>(type: "float(18)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,10 +49,21 @@ namespace EFCoreDemo.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Waiters",
+                columns: new[] { "Id", "Birthday", "Counter", "IdCode", "Name", "Password", "State" },
+                values: new object[] { 1, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.0, "1234567890", "Administartor", "12345", false });
+
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_WaiterId",
                 table: "UserRoles",
                 column: "WaiterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Waiters_IdCode",
+                table: "Waiters",
+                column: "IdCode",
+                unique: true);
         }
 
         /// <inheritdoc />

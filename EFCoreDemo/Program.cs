@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Cafe.Models;
+using EFCoreDemo;
 using EFCoreDemo.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,6 +42,9 @@ using (var context = new CafeDbContext())
     //var userRole = new UserRole { Role = Role.admin, WaiterId = user.Id };
     //context.Add(userRole);
     //context.SaveChanges();
+    var s = "jhsdk";
+    var a =s.DefaultStr();
+
 
  }
 Console.ReadLine();

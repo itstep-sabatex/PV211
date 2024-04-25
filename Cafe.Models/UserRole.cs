@@ -15,7 +15,8 @@ namespace Cafe.Models
         //[Column("ROLE")] // rOLE
         public Role Role { get; set; }
         //public int RoleId { get; set; }
-        public Waiter? Waiter { get; set; } // 7 -9 12 ID NAME CODE MAX_LENGS  [Code]  'Code'
+        public User? Waiter { get; set; } // 7 -9 12 ID NAME CODE MAX_LENGS  [Code]  'Code'
         public int WaiterId { get; set; }
+
     }
 }
