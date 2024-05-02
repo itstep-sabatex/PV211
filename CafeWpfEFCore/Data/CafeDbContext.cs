@@ -12,14 +12,14 @@ namespace CafeWpfEFCore.Data
     public class CafeDbContext :DbContext
     {
         //public DbSet<Role> Role { get; set; }
-        public DbSet<User> Waiters { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlite(Config.Configuration.GetConnectionString("DefaultConnection"));
-            optionsBuilder.UseSqlite("FileName=C:/Users/serhi/.databases/itstep/cafe3.db");
+            optionsBuilder.UseSqlite(Config.Configuration.GetConnectionString("DefaultConnection"));
+            //optionsBuilder.UseSqlite("FileName=C:/Users/serhi/.databases/itstep/cafe3.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

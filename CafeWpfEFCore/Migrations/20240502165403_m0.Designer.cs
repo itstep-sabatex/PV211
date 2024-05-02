@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CafeWpfEFCore.Migrations
 {
     [DbContext(typeof(CafeDbContext))]
-    [Migration("20240502164312_m0")]
+    [Migration("20240502165403_m0")]
     partial class m0
     {
         /// <inheritdoc />
@@ -50,7 +50,7 @@ namespace CafeWpfEFCore.Migrations
                     b.HasIndex("IdCode")
                         .IsUnique();
 
-                    b.ToTable("Waiters");
+                    b.ToTable("Users");
 
                     b.HasData(
                         new

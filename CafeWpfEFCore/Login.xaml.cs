@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CafeWpfEFCore.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,10 +42,18 @@ namespace CafeWpfEFCore
         {
 
         }
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void ThisWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+            using (var context = new CafeDbContext())
+            {
+                userComboBox.ItemsSource = context.Users.Select(s=>new {s.Id, s.Name}).ToArray();
+            }
         }
     }
 }

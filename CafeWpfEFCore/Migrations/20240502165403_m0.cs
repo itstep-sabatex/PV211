@@ -14,7 +14,7 @@ namespace CafeWpfEFCore.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Waiters",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -26,7 +26,7 @@ namespace CafeWpfEFCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Waiters", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,15 +42,15 @@ namespace CafeWpfEFCore.Migrations
                 {
                     table.PrimaryKey("PK_UserRoles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserRoles_Waiters_UserId",
+                        name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Waiters",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Waiters",
+                table: "Users",
                 columns: new[] { "Id", "Birthday", "IdCode", "Name", "Password" },
                 values: new object[,]
                 {
@@ -79,8 +79,8 @@ namespace CafeWpfEFCore.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Waiters_IdCode",
-                table: "Waiters",
+                name: "IX_Users_IdCode",
+                table: "Users",
                 column: "IdCode",
                 unique: true);
         }
@@ -92,7 +92,7 @@ namespace CafeWpfEFCore.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Waiters");
+                name: "Users");
         }
     }
 }

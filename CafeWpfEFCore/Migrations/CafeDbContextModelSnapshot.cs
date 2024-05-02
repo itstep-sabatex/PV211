@@ -47,7 +47,7 @@ namespace CafeWpfEFCore.Migrations
                     b.HasIndex("IdCode")
                         .IsUnique();
 
-                    b.ToTable("Waiters");
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
