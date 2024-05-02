@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:Login Visibility="Collapsed" x:Name="LoginFrame" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Background="AliceBlue" />
-        <TextBlock Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" >Hello user</TextBlock>
+        <local:Login Visibility="Visible" x:Name="LoginFrame" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Background="AliceBlue" />
+        <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" >Hello user</TextBlock>
     </Grid>
 </Window>
