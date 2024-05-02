@@ -22,6 +22,8 @@ namespace CafeWpfEFCore
     public partial class Login : UserControl
     {
         public  int SelectedUserId { get; set; }
+        public event Action<int?, string> LoginResult;
+        private int passwordCounter { get; set; } = 3;
 
         public Login()
         {
@@ -38,9 +40,9 @@ namespace CafeWpfEFCore
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginResult?.Invoke(null, string.Empty);
         }
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {

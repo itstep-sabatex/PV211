@@ -39,7 +39,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Click="ButtonOk_Click" Margin="5" Template="{StaticResource RoundedButtonTemplate}">Ok</Button>
-                    <Button Grid.Column="1" Click="Button_Click" Margin="5" Template="{StaticResource RoundedButtonTemplate}">Cancel</Button>
+                    <Button Grid.Column="1" Click="ButtonCancel_Click" Margin="5" Template="{StaticResource RoundedButtonTemplate}">Cancel</Button>
                 </Grid>
             </Grid>    
         </Border>        
