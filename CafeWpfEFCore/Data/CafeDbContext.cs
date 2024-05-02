@@ -18,7 +18,8 @@ namespace CafeWpfEFCore.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite(Config.Configuration.GetConnectionString("DefaultConnection"));
+            //optionsBuilder.UseSqlite(Config.Configuration.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlite("FileName=C:/Users/serhi/.databases/itstep/cafe3.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
