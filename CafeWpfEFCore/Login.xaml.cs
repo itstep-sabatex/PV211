@@ -41,5 +41,10 @@ namespace CafeWpfEFCore
         {
 
         }
+
+        private void ThisWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
