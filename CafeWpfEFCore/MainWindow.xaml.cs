@@ -56,7 +56,12 @@ namespace CafeWpfEFCore
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var row = dataGrid.CurrentItem;
+            MainFrame.Visibility = Visibility.Collapsed;
+            orderEdit.Visibility = Visibility.Visible;
+            var ts = row.GetType().GetProperty("Id");
 
+            orderEdit.OrderId = (int)(ts.GetValue(row));
+            orderEdit.Refresh();
         }
     }
 }

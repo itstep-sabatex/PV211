@@ -18,5 +18,7 @@
                 </DataGrid.Columns>        
             </DataGrid>    
         </Grid>
+        <local:OrderEdit Visibility="Collapsed" x:Name="orderEdit"></local:OrderEdit>
+    
     </Grid>
 </Window>
