@@ -52,5 +52,11 @@ namespace CafeWpfEFCore
             MainFrame.Visibility = Visibility.Visible;
             Refresh();
         }
+
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = dataGrid.CurrentItem;
+
+        }
     }
 }

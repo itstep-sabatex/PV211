@@ -9,7 +9,7 @@
     <Grid>
         <local:Login Visibility="Visible" x:Name="LoginFrame" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Background="AliceBlue" />
         <Grid x:Name="MainFrame" Visibility="Collapsed">
-            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Час замовлення" Binding="{Binding Time_order}" Width="Auto"/>
                     <DataGridTextColumn Header="Столик" Binding="{Binding Abonent}" Width="*"/>
