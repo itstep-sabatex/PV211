@@ -8,6 +8,15 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <local:Login Visibility="Visible" x:Name="LoginFrame" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Background="AliceBlue" />
-        <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" >Hello user</TextBlock>
+        <Grid x:Name="MainFrame" Visibility="Collapsed">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Час замовлення" Binding="{Binding Time_order}" Width="Auto"/>
+                    <DataGridTextColumn Header="Столик" Binding="{Binding Abonent}" Width="*"/>
+                    <DataGridTextColumn Header="Сума замовлення" Binding="{Binding Summ}" Width="*"/>
+                    <DataGridTextColumn Header="Сума оплати" Binding="{Binding Bill}" Width="*"/>
+                </DataGrid.Columns>        
+            </DataGrid>    
+        </Grid>
     </Grid>
 </Window>

@@ -14,6 +14,10 @@ namespace CafeWpfEFCore.Data
         //public DbSet<Role> Role { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Nomenclature> Nomenclatures { get; set; }
+        public DbSet<ClientTable> ClientTables { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +40,10 @@ namespace CafeWpfEFCore.Data
                 new UserRole {Id=5,Role=Role.Bar,UserId=User.Barmen.Id}
             });
 
+            modelBuilder.Entity<ClientTable>().HasData(ClientTable.DefaultClientTables());
+            modelBuilder.Entity<Nomenclature>().HasData(Nomenclature.DefaultNomenclatures());
+            modelBuilder.Entity<Order>().HasData(Order.DefaultOrders());
+            modelBuilder.Entity<OrderDetail>().HasData(OrderDetail.Defaults());
             //modelBuilder.Ignore<Waiter>();
 
         }

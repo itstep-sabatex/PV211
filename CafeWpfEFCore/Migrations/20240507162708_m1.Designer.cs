@@ -3,6 +3,7 @@ using System;
 using CafeWpfEFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CafeWpfEFCore.Migrations
 {
     [DbContext(typeof(CafeDbContext))]
-    partial class CafeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240507162708_m1")]
+    partial class m1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -181,26 +184,6 @@ namespace CafeWpfEFCore.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Count = 2.0,
-                            NomenclatureId = 1,
-                            OrderId = 1,
-                            Price = 45.0,
-                            Sum = 90.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Count = 2.0,
-                            NomenclatureId = 4,
-                            OrderId = 1,
-                            Price = 105.0,
-                            Sum = 210.0
-                        });
                 });
 
             modelBuilder.Entity("Cafe.Models.User", b =>
