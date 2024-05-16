@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using WebApiDemo.Data;
 using WebApiDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<CafeDbContext>(options =>
+    options.UseSqlite(connectionString));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
