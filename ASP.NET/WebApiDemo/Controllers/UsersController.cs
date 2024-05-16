@@ -28,8 +28,25 @@ namespace WebApiDemo.Controllers
             return await _context.Users.Select(s=> new User { Id=s.Id,Name=s.Name}).ToListAsync();
         }
 
+        public record UP(int id,string password);
+        [HttpPost("CheckPasswordjson")]
+        public async Task<ActionResult<bool>> CheckPasswordJsonAsync([FromBody] UP uP)
+        {
+            var user = await _context.Users.FindAsync(uP.id);
+            if (user == null)
+            {
+                return false;
+            }
+            if (uP.password == user.Password)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
         [HttpPost("CheckPassword")]
-        public async Task<ActionResult<bool>> CheckPasswordAsync(int id, string password)
+        public async Task<ActionResult<bool>> CheckPasswordAsync([FromForm] int id, [FromForm] string password)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)

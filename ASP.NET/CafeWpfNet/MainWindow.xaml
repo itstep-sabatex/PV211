@@ -1,0 +1,24 @@
+﻿<Window x:Class="CafeWpfEFCore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CafeWpfEFCore"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <local:Login Visibility="Visible" x:Name="LoginFrame" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Background="AliceBlue" />
+        <Grid x:Name="MainFrame" Visibility="Collapsed">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Час замовлення" Binding="{Binding Time_order}" Width="Auto"/>
+                    <DataGridTextColumn Header="Столик" Binding="{Binding Abonent}" Width="*"/>
+                    <DataGridTextColumn Header="Сума замовлення" Binding="{Binding Summ}" Width="*"/>
+                    <DataGridTextColumn Header="Сума оплати" Binding="{Binding Bill}" Width="*"/>
+                </DataGrid.Columns>        
+            </DataGrid>    
+        </Grid>
+        <local:OrderEdit Visibility="Collapsed" x:Name="orderEdit"></local:OrderEdit>
+    
+    </Grid>
+</Window>
