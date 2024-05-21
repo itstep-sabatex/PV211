@@ -1,8 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IndexViewModel
+@inject ILogger<IndexViewModel> Logger
+@{
+    //ViewData["Title"] = "Home Page 222";
+    var dateTime = Model.CurrentDate;
 }
-
+@for (int i=0;i<3;i++)
+{
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+        <h1 class="display-4">Welcome @i @ViewData["Title"] </h1>
+    <p> Current DateTime  @Model.CurrentDate</p>
+    <p> Current DateTime  @dateTime</p>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+}

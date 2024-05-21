@@ -15,7 +15,9 @@ namespace MVCDemo.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ViewData["Title"] = "Home Page";
+            var model = new IndexViewModel { CurrentDate = DateTime.Now };
+            return View(model);
         }
 
         public IActionResult Privacy()
