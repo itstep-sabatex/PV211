@@ -12,9 +12,17 @@ namespace RazorPageDemo.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet() //handler
         {
 
+        }
+        public void OnPost() //handler
+        {
+
+        }
+        public async Task OnPostAsync() //handler
+        {
+            await Task.Yield();
         }
     }
 }
