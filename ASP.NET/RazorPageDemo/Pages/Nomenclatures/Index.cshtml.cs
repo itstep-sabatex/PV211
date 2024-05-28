@@ -10,9 +10,11 @@ using RazorPageDemo.Data;
 
 namespace RazorPageDemo.Pages.Nomenclatures
 {
-    public class IndexModel : PageModel
+    public class IndexModel : PageModel //Nomenclatures/Index
     {
         private readonly RazorPageDemo.Data.CafeDbContext _context;
+        [BindProperty(SupportsGet =true)]
+        public string Filter { get; set; }=string.Empty;
 
         public IndexModel(RazorPageDemo.Data.CafeDbContext context)
         {
@@ -23,7 +25,13 @@ namespace RazorPageDemo.Pages.Nomenclatures
 
         public async Task OnGetAsync()
         {
-            Nomenclature = await _context.Nomenclatures.ToListAsync();
+            Nomenclature = await _context.Nomenclatures.Where(s => s.Name.Contains(Filter)).ToListAsync();
         }
+
+        public async Task OnPostAsync()
+        {
+            Nomenclature = await _context.Nomenclatures.Where(s=>s.Name.Contains(Filter)).ToListAsync();
+        }
+
     }
 }
