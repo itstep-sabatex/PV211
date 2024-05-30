@@ -56,3 +56,10 @@
 }
     </tbody>
 </table>
+<ul class="pagination">
+    @for (int i = 1; i <= Model.Pages; i++)
+    {
+        <li class="page-item"><a class="page-link" asp-route-Currentpage="@i">@i</a> </li>
+    }
+
+</ul>

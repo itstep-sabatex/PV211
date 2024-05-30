@@ -20,6 +20,14 @@ namespace RazorPageDemo.Pages.Nomenclatures
         [BindProperty]
         public IFormFile Upload { get; set; }
 
+        [BindProperty(SupportsGet =true)]
+        public int LinesPerPage { get; set; } =10;
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int Pages { get; set; }
+
+
         public IndexModel(RazorPageDemo.Data.CafeDbContext context)
         {
             _context = context;
@@ -27,26 +35,52 @@ namespace RazorPageDemo.Pages.Nomenclatures
 
         public IList<Nomenclature> Nomenclature { get;set; } = default!;
 
+        async Task RefreshData()
+        {
+            var query = _context.Nomenclatures.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(Filter)) query = query.Where(s => s.Name.Contains(Filter));
+
+            Nomenclature = await _context.Nomenclatures.OrderBy(o => o.Id).Skip((CurrentPage - 1) * LinesPerPage).Take(LinesPerPage).ToListAsync();
+            Count = await query.CountAsync();
+            Pages = Count/LinesPerPage +((Count % LinesPerPage)==0?0:1);
+
+        }
+
         public async Task OnGetAsync()
         {
-
-            Nomenclature = await _context.Nomenclatures.Where(s => s.Name.Contains(Filter)).ToListAsync();
-            
+            await RefreshData();           
         }
 
         public async Task OnPostAsync()
         {
-            Nomenclature = await _context.Nomenclatures.Where(s=>s.Name.Contains(Filter)).ToListAsync();
+            await RefreshData();
         }
+        internal record NomenclatureR(int id, string name, string price);
         public async Task OnPostUploadAsync()
         {
             using (var memoryStream = new MemoryStream())
             {
                 await Upload.CopyToAsync(memoryStream);
                 var str = Encoding.UTF8.GetString(memoryStream.ToArray());
-                var nomenclatures = System.Text.Json.JsonSerializer.Deserialize<Nomenclature[]>(str);
+                var nomenclatures = System.Text.Json.JsonSerializer.Deserialize<NomenclatureR[]>(str);
+                foreach (var item in nomenclatures)
+                {
+                    var nomenclature = new Nomenclature {  Name = item.name, Price = double.Parse(item.price.Replace('.', ',')) };
+                    //var n = await _context.Nomenclatures.FirstOrDefaultAsync(d=>d.Name == nomenclature.Name);
+                    //if (n != null)
+                    //{
+                    //    n.Price = nomenclature.Price;
+                    //}else
+                    //{
+                        await _context.AddAsync(nomenclature);
+                    //}
+                     
+                    await _context.SaveChangesAsync();
+                }
+
 
             }
+            await RefreshData();
         }
 
     }
