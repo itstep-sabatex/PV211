@@ -1,0 +1,66 @@
+﻿@page
+@model RazorPageDemo.Pages.Invoices.Items.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].Invoice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].Nomenclature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].UnitOfMeasurement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].Count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDetail[0].Sum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.InvoiceDetail) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice.Bayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nomenclature.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitOfMeasurement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sum)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

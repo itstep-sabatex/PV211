@@ -1,0 +1,55 @@
+﻿@page
+@model RazorPageDemo.Pages.Invoices.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Invoice.Id" />
+            <input type="hidden" asp-for="IsNew"/>
+            <div class="form-group">
+                <label asp-for="Invoice.Date" class="control-label"></label>
+                <input asp-for="Invoice.Date" class="form-control" />
+                <span asp-validation-for="Invoice.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.DocumentNumber" class="control-label"></label>
+                <input asp-for="Invoice.DocumentNumber" class="form-control" />
+                <span asp-validation-for="Invoice.DocumentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Seler" class="control-label"></label>
+                <input asp-for="Invoice.Seler" class="form-control" />
+                <span asp-validation-for="Invoice.Seler" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Bayer" class="control-label"></label>
+                <input asp-for="Invoice.Bayer" class="form-control" />
+                <span asp-validation-for="Invoice.Bayer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

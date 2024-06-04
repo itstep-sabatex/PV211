@@ -19,6 +19,8 @@ public class CafeDbContext : IdentityDbContext
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Nomenclature> Nomenclatures { get; set; }
     public DbSet<ClientTable> ClientTables { get; set; }
+    public DbSet<Invoice> Invoices { get; set; }
+    public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
 
     public CafeDbContext(DbContextOptions<CafeDbContext> options): base(options)
     {
