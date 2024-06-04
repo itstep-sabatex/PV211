@@ -16,7 +16,8 @@ namespace Cafe.Models
         //[Column(TypeName ="varchar(200)")]
         [Display(Name ="Назва")]
         [StringLength(50,MinimumLength =5)]
-        //[RegularExpression(@"^[А-ЩЬЮЯҐЄІЇ]{2}\d{6}$",ErrorMessage = "The passport number is incorrect.")]
+        //[RegularExpression(@"^[А-ЩЬЮЯҐЄІЇ]{2}\d{6}$",ErrorMessage = "The passport number is incorrect.")] // CL4545OK
+        //[RegularExpression(@"^[A-Z]{2}\d{4}[A-Z]{2}$", ErrorMessage = "The Car number is incorect. Please enter numbrer as AB1234RT.")]
         public string Name { get; set; } = default!;
         public double Price { get; set; }
 

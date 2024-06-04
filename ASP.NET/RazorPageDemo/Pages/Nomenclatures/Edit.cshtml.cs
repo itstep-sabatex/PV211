@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cafe.Models;
 using RazorPageDemo.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace RazorPageDemo.Pages.Nomenclatures
 {
@@ -22,6 +23,9 @@ namespace RazorPageDemo.Pages.Nomenclatures
 
         [BindProperty]
         public Nomenclature Nomenclature { get; set; } = default!;
+        //[BindProperty]
+        //[Required] 
+        //public string?  Test { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -43,6 +47,8 @@ namespace RazorPageDemo.Pages.Nomenclatures
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            //ModelState.AddModelError("Nomenclature.Name", "Просто помилка");
+
             if (!ModelState.IsValid)
             {
                 return Page();
