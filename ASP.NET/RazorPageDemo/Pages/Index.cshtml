@@ -1,19 +1,19 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = Localizer["Home page"];
 }
 
 
 
 <div class="row">
     <div class="col-12 col-sm-6" style="background-color:antiquewhite">
-        Col1
+        @Localizer["Col1"]
     </div>
     <div class="col-12 col-sm-6" style="background-color:azure">
         <div class="row">
-            <div class="col" style="background-color:beige"> Inner column1</div>
-            <div class="col" style="background-color:darkgrey"> Inner column2</div>
+            <div class="col" style="background-color:beige"> @Localizer["Inner column1"]</div>
+            <div class="col" style="background-color:darkgrey"> @Localizer["Inner column2"]</div>
         </div>
     </div>
 
