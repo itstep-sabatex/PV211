@@ -14,11 +14,12 @@ namespace Cafe.Models
         public int Id { get; set; }
         [MaxLength(100)]
         //[Column(TypeName ="varchar(200)")]
-        [Display(Name ="Назва")]
+        [Display(Name ="Name")]
         [StringLength(50,MinimumLength =5)]
         //[RegularExpression(@"^[А-ЩЬЮЯҐЄІЇ]{2}\d{6}$",ErrorMessage = "The passport number is incorrect.")] // CL4545OK
         //[RegularExpression(@"^[A-Z]{2}\d{4}[A-Z]{2}$", ErrorMessage = "The Car number is incorect. Please enter numbrer as AB1234RT.")]
         public string Name { get; set; } = default!;
+        [Display(Name="Price")]
         public double Price { get; set; }
 
         public static Nomenclature Soup1 = new Nomenclature { Id = 1, Name = "Суп гороховий", Price = 45 };
