@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Cafe.Models;
 using RazorPageDemo.Data;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RazorPageDemo.Pages.Nomenclatures
 {
+    [Authorize]
     public class IndexModel : PageModel //Nomenclatures/Index
     {
         private readonly RazorPageDemo.Data.CafeDbContext _context;
@@ -48,6 +50,7 @@ namespace RazorPageDemo.Pages.Nomenclatures
 
         public async Task OnGetAsync()
         {
+            var user = User;
             await RefreshData();           
         }
 
