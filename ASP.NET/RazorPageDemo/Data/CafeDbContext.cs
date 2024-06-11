@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace RazorPageDemo.Data;
 
-public class CafeDbContext : IdentityDbContext
+public class CafeDbContext : IdentityDbContext<AppUser>
 {
     //public DbSet<Role> Role { get; set; }
-    public DbSet<User> Users { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
+    //public DbSet<User> Users { get; set; }
+    //public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Nomenclature> Nomenclatures { get; set; }
@@ -31,16 +31,16 @@ public class CafeDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<User>()
-                    .HasData(new User[] { User.Admin,User.Manager,User.Barmen,User.Cook,User.Waiter });
-        modelBuilder.Entity<UserRole>().HasData(new UserRole[] 
-        {
-            new UserRole { Id=1,Role=Role.Admin,UserId=User.Admin.Id},
-            new UserRole { Id=2,Role=Role.Manager,UserId=User.Manager.Id},
-            new UserRole {Id=3,Role=Role.Waiter,UserId=User.Waiter.Id},
-            new UserRole {Id=4,Role=Role.Cook,UserId=User.Cook.Id},
-            new UserRole {Id=5,Role=Role.Bar,UserId=User.Barmen.Id}
-        });
+        //modelBuilder.Entity<User>()
+        //            .HasData(new User[] { User.Admin,User.Manager,User.Barmen,User.Cook,User.Waiter });
+        //modelBuilder.Entity<UserRole>().HasData(new UserRole[] 
+        //{
+        //    new UserRole { Id=1,Role=Role.Admin,UserId=User.Admin.Id},
+        //    new UserRole { Id=2,Role=Role.Manager,UserId=User.Manager.Id},
+        //    new UserRole {Id=3,Role=Role.Waiter,UserId=User.Waiter.Id},
+        //    new UserRole {Id=4,Role=Role.Cook,UserId=User.Cook.Id},
+        //    new UserRole {Id=5,Role=Role.Bar,UserId=User.Barmen.Id}
+        //});
 
         modelBuilder.Entity<ClientTable>().HasData(ClientTable.DefaultClientTables());
         modelBuilder.Entity<Nomenclature>().HasData(Nomenclature.DefaultNomenclatures());
