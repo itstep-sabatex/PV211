@@ -9,12 +9,15 @@ using Cafe.Models;
 using RazorPageDemo.Data;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace RazorPageDemo.Pages.Nomenclatures
 {
-    [Authorize]
+    [Authorize(Roles ="Administrator")]
+    //[Authorize]
     public class IndexModel : PageModel //Nomenclatures/Index
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly RazorPageDemo.Data.CafeDbContext _context;
         [BindProperty(SupportsGet =true)]
         public string Filter { get; set; }=string.Empty;
@@ -30,9 +33,10 @@ namespace RazorPageDemo.Pages.Nomenclatures
         public int Pages { get; set; }
 
 
-        public IndexModel(RazorPageDemo.Data.CafeDbContext context)
+        public IndexModel(RazorPageDemo.Data.CafeDbContext context,UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<Nomenclature> Nomenclature { get;set; } = default!;
@@ -50,7 +54,12 @@ namespace RazorPageDemo.Pages.Nomenclatures
 
         public async Task OnGetAsync()
         {
-            var user = User;
+            var cookieIsInRole = User.IsInRole("Administrator");
+
+            var user = await _userManager.GetUserAsync(User);
+            bool isInRole = await _userManager.IsInRoleAsync(user, "Administrator");
+
+
             await RefreshData();           
         }
 

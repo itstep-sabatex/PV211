@@ -13,8 +13,8 @@ namespace RazorPageDemo.Data;
 public class CafeDbContext : IdentityDbContext<AppUser>
 {
     //public DbSet<Role> Role { get; set; }
-    //public DbSet<User> Users { get; set; }
-    //public DbSet<UserRole> UserRoles { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Nomenclature> Nomenclatures { get; set; }

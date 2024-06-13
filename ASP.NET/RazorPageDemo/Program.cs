@@ -15,6 +15,7 @@ builder.Services.AddDbContext<CafeDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<CafeDbContext>();
 builder.Services.AddRazorPages();
 
@@ -64,5 +65,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
 
 app.MapRazorPages();
 app.MapControllers();
+
+await DataSeed.InitializeAsync(app.Services.CreateScope().ServiceProvider, builder.Configuration);
 
 app.Run();
