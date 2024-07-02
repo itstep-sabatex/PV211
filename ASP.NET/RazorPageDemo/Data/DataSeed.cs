@@ -30,6 +30,7 @@ namespace RazorPageDemo.Data
                 if (!await userManager.IsInRoleAsync(user, Enum.GetName(Roles.Administrator)))
                 {
                     await userManager.AddToRoleAsync(user, Enum.GetName(Roles.Administrator));
+            
                 }
             }
 
