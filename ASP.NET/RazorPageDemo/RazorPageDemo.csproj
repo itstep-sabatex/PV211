@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-RazorPageDemo-5184988a-18b7-4e44-aed4-49d196ec50b4</UserSecretsId>
+	  <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
