@@ -69,3 +69,4 @@ app.MapControllers();
 await DataSeed.InitializeAsync(app.Services.CreateScope().ServiceProvider, builder.Configuration);
 
 app.Run();
+
