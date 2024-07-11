@@ -70,3 +70,4 @@ await DataSeed.InitializeAsync(app.Services.CreateScope().ServiceProvider, build
 
 app.Run();
 
+// version 1.0.0
